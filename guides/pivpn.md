@@ -178,3 +178,28 @@ pivpn -qr profile-name
 The other way is to share the profile file to the vpn user. Ideally, you should **not send the profile by email** as it is not very secure. A USB key or a shared drive should be used, make sure to delete the file after the profile has been installed in Wireguard.
 
 You can connect to the shared config folder using Samba. Refer the to Samba section above.
+
+Troubleshooting
+-----
+
+### PiVPN fails to start when running `pivpn -d`
+
+```
+Nov 12 01:37:14 pivpn systemd[1]: Starting WireGuard via wg-quick(8) for wg0...
+Nov 12 01:37:15 pivpn wg-quick[558]: [#] ip link add wg0 type wireguard
+Nov 12 01:37:15 pivpn wg-quick[558]: Error: Unknown device type.
+Nov 12 01:37:15 pivpn wg-quick[558]: Unable to access interface: Protocol not supported
+Nov 12 01:37:15 pivpn wg-quick[558]: [#] ip link delete dev wg0
+Nov 12 01:37:15 pivpn wg-quick[558]: Cannot find device "wg0"
+Nov 12 01:37:15 pivpn systemd[1]: wg-quick@wg0.service: Main process exited, code=exited, status=1/FAILURE
+Nov 12 01:37:15 pivpn systemd[1]: wg-quick@wg0.service: Failed with result 'exit-code'.
+Nov 12 01:37:15 pivpn systemd[1]: Failed to start WireGuard via wg-quick(8) for wg0.
+pi@pivpn:~ $ sudo apt-get update
+```
+
+Remove and install again:
+
+```
+sudo apt-get remove wireguard-dkms
+sudo apt-get install wireguard-dkms
+```
