@@ -123,7 +123,7 @@ Internet router
 The VPN packets must be routed to the rPi from the router exposed to the internet.
 
 1. Go on your router and configure a new `Port Forwarding Rule`.
-1. The rule should route all incoming traffic (TCP, UDP) on port 51820 to the IP of the rPi identified earlier.
+1. The rule should route all incoming traffic (TCP, UDP) on port 51821 to the IP of the rPi identified earlier.
 
 DNS Entry Update
 -----
